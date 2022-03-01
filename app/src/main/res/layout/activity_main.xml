@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/background_img">
+    android:background="@drawable/background_img"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/result_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#80FFFFFF"
-
         android:textAlignment="center"
         android:textSize="30sp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/operation_field"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
 
     <TextView
         android:id="@+id/operation_field"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="#80FFFFFF"
-
+        android:layout_marginTop="5dp"
         android:textSize="30sp"
+
         app:layout_constraintBottom_toTopOf="@id/number_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,15 +41,19 @@
         android:background="#80FFFFFF"
         android:textAlignment="center"
         android:textSize="30sp"
+
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/operation_field" />
+        app:layout_constraintTop_toBottomOf="@id/operation_field"
+        app:layout_constraintBottom_toTopOf="@id/fifth_button_panel"/>
 
     <LinearLayout
         android:id="@+id/first_button_panel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+
         app:layout_constraintBottom_toTopOf="@+id/second_button_panel"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -59,7 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80FF5722"
-            android:text="C">
+            android:text="@string/Clear"
+            android:onClick="onClickOperation">
 
         </Button>
 
@@ -69,7 +77,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80FF5722"
-            android:text="%">
+            android:text="@string/percent"
+            android:onClick="onClickOperation">
 
         </Button>
 
@@ -79,7 +88,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80FF5722"
-            android:text="⌫">
+            android:text="@string/backspace"
+            android:onClick="onClickOperation">
 
         </Button>
 
@@ -89,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80FF5722"
-            android:text="÷">
+            android:text="@string/division">
 
         </Button>
 
@@ -100,6 +110,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+
         app:layout_constraintBottom_toTopOf="@+id/third_button_panel"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -111,7 +122,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="7">
+            android:onClick="onClickNumber"
+            android:text="@string/_7">
 
         </Button>
 
@@ -121,7 +133,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="8">
+            android:text="@string/_8"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -131,7 +144,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="9">
+            android:text="@string/_9"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -141,7 +155,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80FF5722"
-            android:text="×">
+            android:text="@string/multiply"
+            android:onClick="onClickOperation">
 
         </Button>
 
@@ -152,6 +167,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+
         app:layout_constraintBottom_toTopOf="@+id/fourth_button_panel"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -163,7 +179,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="4">
+            android:text="@string/_4"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -173,7 +190,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="5">
+            android:text="@string/_5"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -183,7 +201,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="6">
+            android:text="@string/_6"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -193,7 +212,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80FF5722"
-            android:text="−">
+            android:text="@string/minus"
+            android:onClick="onClickOperation">
 
         </Button>
 
@@ -204,6 +224,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+
         app:layout_constraintBottom_toTopOf="@id/fifth_button_panel"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -215,7 +236,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="1">
+            android:text="@string/_1"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -225,7 +247,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="2">
+            android:text="@string/_2"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -235,7 +258,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="3">
+            android:text="@string/_3"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -245,7 +269,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80FF5722"
-            android:text="+">
+            android:text="@string/plus"
+            android:onClick="onClickOperation">
 
         </Button>
 
@@ -256,6 +281,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -267,7 +293,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text="0">
+            android:text="@string/_0"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -277,7 +304,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#80802A11"
-            android:text=".">
+            android:text="@string/dot"
+            android:onClick="onClickNumber">
 
         </Button>
 
@@ -287,7 +315,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:backgroundTint="#80FF5722"
-            android:text="=">
+            android:text="@string/equals"
+            android:onClick="onClickOperation">
 
         </Button>
 
