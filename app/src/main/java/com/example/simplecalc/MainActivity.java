@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     EditText number_field;
     TextView operation_field;
 
-
     Double operand = null;
     String last_operation = "=";
 
@@ -24,10 +23,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // получаем все поля по id из activity_main.xml
-        result_field.findViewById(R.id.result_field);
-        number_field.findViewById(R.id.number_field);
-        operation_field.findViewById(R.id.operation_field);
+        result_field = findViewById(R.id.result_field);
+        number_field = findViewById(R.id.number_field);
+        operation_field = findViewById(R.id.operation_field);
 
     }
 
@@ -91,22 +91,13 @@ public class MainActivity extends AppCompatActivity {
     public void performOperation(Double number, String operation) {
 
         // Если операнд ранее не был установлен (при вводе самой первой операции)
-        if (operand == 0) {
+        if (operand == null) {
             operand = number;
         } else {
             if (last_operation.equals("=")) {
                 last_operation = operation;
             }
             switch (last_operation) {
-                case "C":
-                    operand = 0.0;
-                    number_field.setText("");
-                    operation_field.setText("");
-                    break;
-
-                case "⌫":
-                    operand = (number == null || number.toString().length() == 0) ? null : Double.valueOf((number.toString().substring(0, number.toString().length() - 1)));
-                    break;
 
                 case "=":
                     operand = number;
@@ -132,10 +123,24 @@ public class MainActivity extends AppCompatActivity {
                     operand += number;
                     break;
 
-                case "%":
-                    operand = number / 100;
-                    break;
+            }
 
+            if (operand != null) {
+                result_field.setText(operand.toString());
+                switch (last_operation) {
+                    case "C":
+                        operand = null;
+                        //last_operation = null;
+                        break;
+
+                    case "⌫":
+                        operand = (Double.valueOf((number.toString().substring(0, number.toString().length() - 1))));
+                        break;
+
+                    case "%":
+                        operand = number / 100.0;
+                        break;
+                }
             }
         }
         number_field.setText("");
